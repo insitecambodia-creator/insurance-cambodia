@@ -35,7 +35,7 @@ export default function Home() {
           <div className="mt-8 flex justify-center gap-4">
             <Link
               href="/request"
-              className="rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700"
+              className="rounded-md bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-dark"
             >
               Submit a request
             </Link>
@@ -54,7 +54,7 @@ export default function Home() {
         <div className="mt-8 grid gap-8 sm:grid-cols-3">
           {steps.map((step, index) => (
             <div key={step.title}>
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
                 {index + 1}
               </div>
               <h3 className="mt-4 font-semibold text-slate-900">
@@ -76,7 +76,7 @@ export default function Home() {
               <Link
                 key={category.slug}
                 href={`/request?category=${category.slug}`}
-                className="rounded-lg border border-slate-200 bg-white p-5 transition hover:border-blue-300 hover:shadow-sm"
+                className="rounded-lg border border-slate-200 bg-white p-5 transition hover:border-brand/40 hover:shadow-sm"
               >
                 <span className="text-2xl">{category.icon}</span>
                 <h3 className="mt-3 font-semibold text-slate-900">
@@ -96,7 +96,7 @@ export default function Home() {
           <h2 className="text-2xl font-semibold text-slate-900">
             Featured brokers
           </h2>
-          <Link href="/brokers" className="text-sm font-medium text-blue-600 hover:underline">
+          <Link href="/brokers" className="text-sm font-medium text-brand hover:underline">
             View all
           </Link>
         </div>

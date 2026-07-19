@@ -13,7 +13,7 @@ export default function BrokersPage() {
       <h1 className="text-3xl font-bold text-slate-900">Insurance brokers</h1>
       <p className="mt-2 max-w-2xl text-slate-600">
         Browse our directory of insurance brokers in Cambodia, or{" "}
-        <a href="/request" className="text-blue-600 hover:underline">
+        <a href="/request" className="text-brand hover:underline">
           submit one request
         </a>{" "}
         and let us forward it for you.

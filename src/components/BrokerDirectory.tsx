@@ -26,7 +26,7 @@ export default function BrokerDirectory({
           onClick={() => setActiveCategory(null)}
           className={`rounded-full border px-4 py-1.5 text-sm font-medium ${
             activeCategory === null
-              ? "border-blue-600 bg-blue-600 text-white"
+              ? "border-brand bg-brand text-white"
               : "border-slate-300 text-slate-600 hover:bg-slate-50"
           }`}
         >
@@ -39,7 +39,7 @@ export default function BrokerDirectory({
             onClick={() => setActiveCategory(category.slug)}
             className={`rounded-full border px-4 py-1.5 text-sm font-medium ${
               activeCategory === category.slug
-                ? "border-blue-600 bg-blue-600 text-white"
+                ? "border-brand bg-brand text-white"
                 : "border-slate-300 text-slate-600 hover:bg-slate-50"
             }`}
           >
@@ -102,7 +102,7 @@ export default function BrokerDirectory({
             </dl>
             <Link
               href={`/request?broker=${broker.id}`}
-              className="mt-4 inline-block text-sm font-medium text-blue-600 hover:underline"
+              className="mt-4 inline-block text-sm font-medium text-brand hover:underline"
             >
               Request a quote from this broker →
             </Link>

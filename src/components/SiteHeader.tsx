@@ -11,14 +11,13 @@ export default function SiteHeader() {
     <header className="border-b border-slate-200 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center gap-2 font-semibold text-slate-900">
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-blue-600 text-white">
-            IC
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element -- static SVG logo, no optimization needed */}
+          <img src="/logo.svg" alt="Insurance Cambodia" className="h-8 w-8" />
           <span>Insurance Cambodia</span>
         </Link>
         <nav className="flex items-center gap-6 text-sm font-medium text-slate-600">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-blue-600">
+            <Link key={link.href} href={link.href} className="hover:text-brand">
               {link.label}
             </Link>
           ))}

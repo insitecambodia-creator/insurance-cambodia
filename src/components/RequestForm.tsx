@@ -199,7 +199,7 @@ export default function RequestForm({
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+        className="rounded-md bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-dark disabled:opacity-50"
       >
         {status === "submitting" ? "Sending..." : "Send request"}
       </button>
