@@ -8,8 +8,7 @@ export default function SiteFooter() {
           contact you directly with quotes.
         </p>
         <p className="mt-4">
-          &copy; {new Date().getFullYear()} Insurance Cambodia. All broker
-          listings are for demonstration purposes.
+          &copy; {new Date().getFullYear()} Insurance Cambodia.
         </p>
       </div>
     </footer>

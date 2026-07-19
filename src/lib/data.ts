@@ -1,5 +1,6 @@
-// Placeholder demo data for the insurance directory.
-// Replace with real broker/category data before launch.
+// Category list is placeholder/demo. Broker list is real (licensed
+// Cambodian insurance brokers), but specialties per category are not yet
+// confirmed per broker — see the ALL_CATEGORY_SLUGS note below.
 
 export type Category = {
   slug: string;
@@ -11,11 +12,11 @@ export type Category = {
 export type Broker = {
   id: string;
   name: string;
-  tagline: string;
+  tagline?: string;
   categories: string[]; // Category slugs
-  phone: string;
-  email: string;
-  location: string;
+  phone?: string;
+  email?: string;
+  location?: string;
 };
 
 export const categories: Category[] = [
@@ -57,60 +58,134 @@ export const categories: Category[] = [
   },
 ];
 
+// Specialties per category are not yet confirmed per broker, so every
+// broker below is listed under all categories as a general-broker
+// assumption. Narrow individual brokers down to their real specialties
+// once that's known.
+const ALL_CATEGORY_SLUGS = ["health", "motor", "life", "travel", "property", "business"];
+
 export const brokers: Broker[] = [
   {
-    id: "mekong-shield",
-    name: "Mekong Shield Insurance Brokers",
-    tagline: "Family health and life plans across Phnom Penh.",
-    categories: ["health", "life", "business"],
-    phone: "+855 12 345 678",
-    email: "contact@mekongshield.example",
-    location: "Phnom Penh",
+    id: "affinity-star",
+    name: "Affinity Star Insurance Brokers Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "javierneo@affinitystar.insure",
   },
   {
-    id: "angkor-trust",
-    name: "Angkor Trust Insurance",
-    tagline: "Motor and property coverage with fast local claims.",
-    categories: ["motor", "property"],
-    phone: "+855 12 456 789",
-    email: "hello@angkortrust.example",
-    location: "Siem Reap",
+    id: "ag-insurance-broker",
+    name: "AG Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "info@agcambodia.com",
   },
   {
-    id: "tonle-sap-assurance",
-    name: "Tonle Sap Assurance Partners",
-    tagline: "Health and travel cover for individuals and groups.",
-    categories: ["health", "travel"],
-    phone: "+855 12 567 890",
-    email: "info@tonlesapassurance.example",
-    location: "Phnom Penh",
+    id: "alpha-insurance-broker",
+    name: "Alpha Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "hello@alphainb.com",
   },
   {
-    id: "bayon-risk-advisors",
-    name: "Bayon Risk Advisors",
-    tagline: "Commercial and property risk advisory for SMEs.",
-    categories: ["business", "property"],
-    phone: "+855 12 678 901",
-    email: "advisors@bayonrisk.example",
-    location: "Phnom Penh",
+    id: "bassac-insurance-broker",
+    name: "Bassac Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "info@bassacins.com",
   },
   {
-    id: "khmer-family",
-    name: "Khmer Family Insurance Co.",
-    tagline: "Life and health plans built for growing families.",
-    categories: ["life", "health"],
-    phone: "+855 12 789 012",
-    email: "care@khmerfamily.example",
-    location: "Battambang",
+    id: "blue-ocean-insurance-broker",
+    name: "Blue Ocean Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "info@boinsurancebroker.com",
   },
   {
-    id: "riverside-brokers",
-    name: "Riverside Insurance Brokers",
-    tagline: "Motor and travel coverage with same-day quotes.",
-    categories: ["motor", "travel"],
-    phone: "+855 12 890 123",
-    email: "quotes@riversidebrokers.example",
-    location: "Phnom Penh",
+    id: "elite-insurance-brokers",
+    name: "Elite Insurance Brokers (Cambodia) PLC.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "info@elitebrokercambodia.com",
+  },
+  {
+    id: "fincorp-insurance-broker",
+    name: "Fincorp Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "info@fincorpinsurancebroker.com.kh",
+  },
+  {
+    id: "global-general-insurance-broker",
+    name: "Global General Insurance Broker PLC.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "info@gg-insurancebroker.com",
+  },
+  {
+    id: "icon-insurance-brokers",
+    name: "Icon Insurance Brokers Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+  },
+  {
+    id: "lc-insurance-broker",
+    name: "LC Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "info@lc-cambodia.com",
+  },
+  {
+    id: "lockton-ibs",
+    name: "Lockton IBS Insurance Brokers (Cambodia) Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "op@lockton-ibs.com",
+  },
+  {
+    id: "mga-asia-insurance-broker",
+    name: "MGA Asia Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "asia@mga.com",
+  },
+  {
+    id: "profound-insurance-broker",
+    name: "Profound Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+  },
+  {
+    id: "provita-insurance-broker",
+    name: "Provita Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "info@provitainsbroker.com",
+  },
+  {
+    id: "rio-huot-insurance-broker",
+    name: "Rio Huot Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+  },
+  {
+    id: "safetynet-insurance-brokers",
+    name: "Safetynet Insurance Brokers (Cambodia) Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "help@safetynet-health.com",
+  },
+  {
+    id: "sino-asean-international",
+    name: "Sino ASEAN International Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+  },
+  {
+    id: "tb-insurance-broker",
+    name: "TB Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "claims@tbinsurancebroker.com",
+  },
+  {
+    id: "tigermar-cambodia",
+    name: "Tigermar (Cambodia) Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "cambodia@tigermar-kh.com",
+  },
+  {
+    id: "wecare-insurance-broker",
+    name: "Wecare Insurance Broker Co., Ltd.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "info@wecareinsurance.asia",
+  },
+  {
+    id: "worldbridge-insurance-brokers",
+    name: "Worldbridge Insurance Brokers PLC.",
+    categories: ALL_CATEGORY_SLUGS,
+    email: "hello@worldbridgeins.com",
   },
 ];
 

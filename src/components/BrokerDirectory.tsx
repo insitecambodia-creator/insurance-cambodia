@@ -52,34 +52,53 @@ export default function BrokerDirectory({
         {filteredBrokers.map((broker) => (
           <div key={broker.id} className="rounded-lg border border-slate-200 p-5">
             <h3 className="font-semibold text-slate-900">{broker.name}</h3>
-            <p className="mt-1 text-sm text-slate-600">{broker.tagline}</p>
+            {broker.tagline && (
+              <p className="mt-1 text-sm text-slate-600">{broker.tagline}</p>
+            )}
             <div className="mt-3 flex flex-wrap gap-1.5">
-              {broker.categories.map((slug) => {
-                const category = categories.find((c) => c.slug === slug);
-                if (!category) return null;
-                return (
-                  <span
-                    key={slug}
-                    className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-600"
-                  >
-                    {category.icon} {category.name}
-                  </span>
-                );
-              })}
+              {broker.categories.length >= categories.length ? (
+                <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-500">
+                  General broker — specialties not yet confirmed
+                </span>
+              ) : (
+                broker.categories.map((slug) => {
+                  const category = categories.find((c) => c.slug === slug);
+                  if (!category) return null;
+                  return (
+                    <span
+                      key={slug}
+                      className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-600"
+                    >
+                      {category.icon} {category.name}
+                    </span>
+                  );
+                })
+              )}
             </div>
             <dl className="mt-4 space-y-1 text-sm text-slate-600">
-              <div className="flex justify-between">
-                <dt className="text-slate-400">Location</dt>
-                <dd>{broker.location}</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-slate-400">Phone</dt>
-                <dd>{broker.phone}</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-slate-400">Email</dt>
-                <dd>{broker.email}</dd>
-              </div>
+              {broker.location && (
+                <div className="flex justify-between">
+                  <dt className="text-slate-400">Location</dt>
+                  <dd>{broker.location}</dd>
+                </div>
+              )}
+              {broker.phone && (
+                <div className="flex justify-between">
+                  <dt className="text-slate-400">Phone</dt>
+                  <dd>{broker.phone}</dd>
+                </div>
+              )}
+              {broker.email ? (
+                <div className="flex justify-between">
+                  <dt className="text-slate-400">Email</dt>
+                  <dd>{broker.email}</dd>
+                </div>
+              ) : (
+                <div className="flex justify-between">
+                  <dt className="text-slate-400">Email</dt>
+                  <dd className="text-slate-400">Not listed yet</dd>
+                </div>
+              )}
             </dl>
             <Link
               href={`/request?broker=${broker.id}`}

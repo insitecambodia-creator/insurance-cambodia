@@ -107,10 +107,14 @@ export default function Home() {
               className="rounded-lg border border-slate-200 p-5"
             >
               <h3 className="font-semibold text-slate-900">{broker.name}</h3>
-              <p className="mt-1 text-sm text-slate-600">{broker.tagline}</p>
-              <p className="mt-3 text-xs uppercase tracking-wide text-slate-400">
-                {broker.location}
-              </p>
+              {broker.tagline && (
+                <p className="mt-1 text-sm text-slate-600">{broker.tagline}</p>
+              )}
+              {broker.location && (
+                <p className="mt-3 text-xs uppercase tracking-wide text-slate-400">
+                  {broker.location}
+                </p>
+              )}
             </div>
           ))}
         </div>
