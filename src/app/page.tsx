@@ -22,12 +22,12 @@ const steps = [
 export default function Home() {
   return (
     <div>
-      <section className="bg-slate-50">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-6xl px-6 py-20 text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
             One request. Multiple insurance brokers in Cambodia.
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
             Submit your insurance request once and we&apos;ll forward it to
             trusted brokers across Cambodia, so you can compare quotes
             without the runaround.
@@ -41,7 +41,7 @@ export default function Home() {
             </Link>
             <Link
               href="/brokers"
-              className="rounded-md border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-white"
+              className="rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
             >
               Browse brokers
             </Link>
