@@ -18,6 +18,9 @@ export type Broker = {
   email?: string;
   location?: string;
   featured?: boolean;
+  // Set once the broker has replied to a verification email confirming
+  // they're operational. Only mark true on explicit confirmation.
+  verified?: boolean;
 };
 
 export const categories: Category[] = [

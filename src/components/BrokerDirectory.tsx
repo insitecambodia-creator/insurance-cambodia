@@ -51,7 +51,25 @@ export default function BrokerDirectory({
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {filteredBrokers.map((broker) => (
           <div key={broker.id} className="rounded-lg border border-slate-200 p-5">
-            <h3 className="font-semibold text-slate-900">{broker.name}</h3>
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="font-semibold text-slate-900">{broker.name}</h3>
+              {broker.verified && (
+                <span className="flex shrink-0 items-center gap-1 text-xs font-medium text-brand">
+                  verified
+                  <svg
+                    viewBox="0 0 20 20"
+                    className="h-4 w-4 fill-brand"
+                    aria-hidden="true"
+                  >
+                    <circle cx="10" cy="10" r="10" />
+                    <path
+                      d="M8.6 13.2 5.9 10.5l1.1-1.1 1.6 1.6 4-4 1.1 1.1z"
+                      fill="white"
+                    />
+                  </svg>
+                </span>
+              )}
+            </div>
             {broker.tagline && (
               <p className="mt-1 text-sm text-slate-600">{broker.tagline}</p>
             )}
