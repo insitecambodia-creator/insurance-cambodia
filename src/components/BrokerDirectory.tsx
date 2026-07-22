@@ -57,7 +57,15 @@ export default function BrokerDirectory({
             }`}
           >
             <div className="flex items-start justify-between gap-2">
-              <h3 className="font-semibold text-slate-900">{broker.name}</h3>
+              <h3
+                className={
+                  broker.closed
+                    ? "font-medium text-slate-400"
+                    : "font-semibold text-slate-900"
+                }
+              >
+                {broker.name}
+              </h3>
               {broker.closed ? (
                 <span className="flex shrink-0 items-center gap-1 text-xs font-medium text-slate-500">
                   closed
