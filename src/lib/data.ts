@@ -81,6 +81,7 @@ export const brokers: Broker[] = [
     categories: ALL_CATEGORY_SLUGS,
     email: "info@agcambodia.com",
     featured: true,
+    verified: true,
   },
   {
     id: "alpha-insurance-broker",
@@ -118,6 +119,7 @@ export const brokers: Broker[] = [
     categories: ALL_CATEGORY_SLUGS,
     email: "info@gg-insurancebroker.com",
     featured: true,
+    verified: true,
   },
   {
     id: "icon-insurance-brokers",
@@ -187,6 +189,7 @@ export const brokers: Broker[] = [
     categories: ALL_CATEGORY_SLUGS,
     email: "info@wecareinsurance.asia",
     featured: true,
+    verified: true,
   },
   {
     id: "worldbridge-insurance-brokers",
