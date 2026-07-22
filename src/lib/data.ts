@@ -17,6 +17,7 @@ export type Broker = {
   phone?: string;
   email?: string;
   location?: string;
+  featured?: boolean;
 };
 
 export const categories: Category[] = [
@@ -76,6 +77,7 @@ export const brokers: Broker[] = [
     name: "AG Insurance Broker Co., Ltd.",
     categories: ALL_CATEGORY_SLUGS,
     email: "info@agcambodia.com",
+    featured: true,
   },
   {
     id: "alpha-insurance-broker",
@@ -112,6 +114,7 @@ export const brokers: Broker[] = [
     name: "Global General Insurance Broker PLC.",
     categories: ALL_CATEGORY_SLUGS,
     email: "info@gg-insurancebroker.com",
+    featured: true,
   },
   {
     id: "icon-insurance-brokers",
@@ -180,6 +183,7 @@ export const brokers: Broker[] = [
     name: "Wecare Insurance Broker Co., Ltd.",
     categories: ALL_CATEGORY_SLUGS,
     email: "info@wecareinsurance.asia",
+    featured: true,
   },
   {
     id: "worldbridge-insurance-brokers",

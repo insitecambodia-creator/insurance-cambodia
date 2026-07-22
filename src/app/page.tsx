@@ -101,7 +101,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {brokers.slice(0, 3).map((broker) => (
+          {brokers.filter((broker) => broker.featured).map((broker) => (
             <div
               key={broker.id}
               className="rounded-lg border border-slate-200 p-5"
