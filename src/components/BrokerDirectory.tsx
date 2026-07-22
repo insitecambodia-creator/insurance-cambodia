@@ -50,24 +50,43 @@ export default function BrokerDirectory({
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {filteredBrokers.map((broker) => (
-          <div key={broker.id} className="rounded-lg border border-slate-200 p-5">
+          <div
+            key={broker.id}
+            className={`rounded-lg border border-slate-200 p-5 ${
+              broker.closed ? "opacity-70" : ""
+            }`}
+          >
             <div className="flex items-start justify-between gap-2">
               <h3 className="font-semibold text-slate-900">{broker.name}</h3>
-              {broker.verified && (
-                <span className="flex shrink-0 items-center gap-1 text-xs font-medium text-brand">
-                  verified
+              {broker.closed ? (
+                <span className="flex shrink-0 items-center gap-1 text-xs font-medium text-slate-500">
+                  closed
                   <svg
                     viewBox="0 0 20 20"
-                    className="h-4 w-4 fill-brand"
+                    className="h-4 w-4 fill-slate-400"
                     aria-hidden="true"
                   >
                     <circle cx="10" cy="10" r="10" />
-                    <path
-                      d="M8.6 13.2 5.9 10.5l1.1-1.1 1.6 1.6 4-4 1.1 1.1z"
-                      fill="white"
-                    />
+                    <rect x="5.5" y="9.2" width="9" height="1.6" fill="white" />
                   </svg>
                 </span>
+              ) : (
+                broker.verified && (
+                  <span className="flex shrink-0 items-center gap-1 text-xs font-medium text-brand">
+                    verified
+                    <svg
+                      viewBox="0 0 20 20"
+                      className="h-4 w-4 fill-brand"
+                      aria-hidden="true"
+                    >
+                      <circle cx="10" cy="10" r="10" />
+                      <path
+                        d="M8.6 13.2 5.9 10.5l1.1-1.1 1.6 1.6 4-4 1.1 1.1z"
+                        fill="white"
+                      />
+                    </svg>
+                  </span>
+                )
               )}
             </div>
             {broker.tagline && (
@@ -118,12 +137,18 @@ export default function BrokerDirectory({
                 </div>
               )}
             </dl>
-            <Link
-              href={`/request?broker=${broker.id}`}
-              className="mt-4 inline-block text-sm font-medium text-brand hover:underline"
-            >
-              Request a quote from this broker →
-            </Link>
+            {broker.closed ? (
+              <p className="mt-4 text-sm text-slate-400">
+                No longer accepting new requests.
+              </p>
+            ) : (
+              <Link
+                href={`/request?broker=${broker.id}`}
+                className="mt-4 inline-block text-sm font-medium text-brand hover:underline"
+              >
+                Request a quote from this broker →
+              </Link>
+            )}
           </div>
         ))}
         {filteredBrokers.length === 0 && (

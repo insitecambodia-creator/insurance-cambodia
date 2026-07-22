@@ -53,10 +53,15 @@ export async function POST(request: Request) {
   }
 
   const category = body.category as string;
+  const openBrokerIds = new Set(
+    brokers.filter((b) => !b.closed).map((b) => b.id),
+  );
   const targetBrokerIds =
     requestedBrokerIds.length > 0
-      ? requestedBrokerIds
-      : brokers.filter((b) => b.categories.includes(category)).map((b) => b.id);
+      ? requestedBrokerIds.filter((id) => openBrokerIds.has(id))
+      : brokers
+          .filter((b) => !b.closed && b.categories.includes(category))
+          .map((b) => b.id);
 
   const record = {
     id: crypto.randomUUID(),

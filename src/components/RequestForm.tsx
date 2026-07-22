@@ -25,7 +25,9 @@ export default function RequestForm({
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const brokersForCategory = brokers.filter((b) => b.categories.includes(category));
+  const brokersForCategory = brokers.filter(
+    (b) => !b.closed && b.categories.includes(category),
+  );
 
   function toggleBroker(id: string) {
     setSelectedBrokerIds((current) =>

@@ -21,6 +21,9 @@ export type Broker = {
   // Set once the broker has replied to a verification email confirming
   // they're operational. Only mark true on explicit confirmation.
   verified?: boolean;
+  // Broker is no longer operating. Kept in the directory (not deleted)
+  // but excluded from request matching/forwarding.
+  closed?: boolean;
 };
 
 export const categories: Category[] = [
@@ -100,6 +103,7 @@ export const brokers: Broker[] = [
     name: "Blue Ocean Insurance Broker Co., Ltd.",
     categories: ALL_CATEGORY_SLUGS,
     email: "info@boinsurancebroker.com",
+    closed: true,
   },
   {
     id: "elite-insurance-brokers",
@@ -208,5 +212,5 @@ export function getBroker(id: string): Broker | undefined {
 }
 
 export function brokersForCategory(slug: string): Broker[] {
-  return brokers.filter((b) => b.categories.includes(slug));
+  return brokers.filter((b) => !b.closed && b.categories.includes(slug));
 }
