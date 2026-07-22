@@ -116,6 +116,7 @@ export const brokers: Broker[] = [
     name: "Fincorp Insurance Broker Co., Ltd.",
     categories: ALL_CATEGORY_SLUGS,
     email: "info@fincorpinsurancebroker.com.kh",
+    closed: true,
   },
   {
     id: "global-general-insurance-broker",
