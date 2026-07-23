@@ -8,9 +8,14 @@ export const metadata: Metadata = {
 };
 
 export default function BrokersPage() {
+  const activeBrokerCount = brokers.filter((broker) => !broker.closed).length;
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
       <h1 className="text-3xl font-bold text-slate-900">Insurance brokers</h1>
+      <p className="mt-2 text-sm font-medium text-brand">
+        {activeBrokerCount} active insurance broker{activeBrokerCount === 1 ? "" : "s"} ready to help.
+      </p>
       <p className="mt-2 max-w-2xl text-slate-600">
         Browse our directory of insurance brokers in Cambodia, or{" "}
         <a href="/request" className="text-brand hover:underline">
