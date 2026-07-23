@@ -130,6 +130,7 @@ export const brokers: Broker[] = [
     id: "icon-insurance-brokers",
     name: "Icon Insurance Brokers Co., Ltd.",
     categories: ALL_CATEGORY_SLUGS,
+    closed: true,
   },
   {
     id: "lc-insurance-broker",
@@ -148,22 +149,26 @@ export const brokers: Broker[] = [
     name: "MGA Asia Insurance Broker Co., Ltd.",
     categories: ALL_CATEGORY_SLUGS,
     email: "asia@mga.com",
+    closed: true,
   },
   {
     id: "profound-insurance-broker",
     name: "Profound Insurance Broker Co., Ltd.",
     categories: ALL_CATEGORY_SLUGS,
+    closed: true,
   },
   {
     id: "provita-insurance-broker",
     name: "Provita Insurance Broker Co., Ltd.",
     categories: ALL_CATEGORY_SLUGS,
     email: "info@provitainsbroker.com",
+    closed: true,
   },
   {
     id: "rio-huot-insurance-broker",
     name: "Rio Huot Insurance Broker Co., Ltd.",
     categories: ALL_CATEGORY_SLUGS,
+    closed: true,
   },
   {
     id: "safetynet-insurance-brokers",
