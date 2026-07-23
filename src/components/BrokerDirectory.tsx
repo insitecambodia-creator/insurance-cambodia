@@ -14,8 +14,14 @@ export default function BrokerDirectory({
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const filteredBrokers = useMemo(() => {
-    if (!activeCategory) return brokers;
-    return brokers.filter((broker) => broker.categories.includes(activeCategory));
+    const matching = activeCategory
+      ? brokers.filter((broker) => broker.categories.includes(activeCategory))
+      : brokers;
+    // Stable sort: active brokers first, closed ones pushed down, each
+    // group keeping its existing relative order.
+    return [...matching].sort(
+      (a, b) => Number(!!a.closed) - Number(!!b.closed),
+    );
   }, [brokers, activeCategory]);
 
   return (
