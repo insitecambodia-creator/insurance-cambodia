@@ -1,14 +1,9 @@
 import { NextResponse } from "next/server";
-import { appendFile, mkdir } from "node:fs/promises";
-import path from "node:path";
-import { brokers, getCategory } from "@/lib/data";
+import { Resend } from "resend";
+import { brokers, getCategory, type Broker } from "@/lib/data";
 
-// Storage/forwarding is not finalized yet. For now, validated requests are
-// appended as JSON lines to a local file so nothing submitted is lost.
-// TODO: once a forwarding mechanism is chosen (e.g. transactional email to
-// brokers, a real database), replace this with that implementation.
-const STORE_DIR = path.join("/tmp", "insurance-cambodia");
-const STORE_FILE = path.join(STORE_DIR, "requests.jsonl");
+const FROM_ADDRESS = "Insurance Cambodia <contact@insurance-cambodia.com>";
+const ADMIN_EMAIL = "contact@insurance-cambodia.com";
 
 type RequestPayload = {
   name?: string;
@@ -21,6 +16,24 @@ type RequestPayload = {
 
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+function buildEmailBody(record: {
+  name: string;
+  phone: string | null;
+  email: string | null;
+  categoryName: string;
+  message: string | null;
+}) {
+  return [
+    "New insurance request via Insurance Cambodia",
+    "",
+    `Insurance type: ${record.categoryName}`,
+    `Name: ${record.name}`,
+    `Phone: ${record.phone ?? "Not provided"}`,
+    `Email: ${record.email ?? "Not provided"}`,
+    `Message: ${record.message ?? "Not provided"}`,
+  ].join("\n");
 }
 
 export async function POST(request: Request) {
@@ -74,13 +87,59 @@ export async function POST(request: Request) {
     brokerIds: targetBrokerIds,
   };
 
-  try {
-    await mkdir(STORE_DIR, { recursive: true });
-    await appendFile(STORE_FILE, JSON.stringify(record) + "\n", "utf8");
-  } catch (error) {
-    console.error("Failed to persist insurance request", error);
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("RESEND_API_KEY is not set; cannot send insurance requests.");
     return NextResponse.json(
-      { error: "Could not save your request. Please try again." },
+      { error: "Email delivery is not configured yet. Please try again later." },
+      { status: 500 },
+    );
+  }
+
+  const categoryName = getCategory(category)!.name;
+  const emailBody = buildEmailBody({
+    name: record.name,
+    phone: record.phone,
+    email: record.email,
+    categoryName,
+    message: record.message,
+  });
+  const subject = `New ${categoryName} request from ${record.name}`;
+  const replyTo = record.email ?? undefined;
+
+  const targetBrokers = targetBrokerIds
+    .map((id) => brokers.find((b) => b.id === id))
+    .filter((b): b is Broker => Boolean(b?.email));
+
+  const resend = new Resend(apiKey);
+  const sendResults = await Promise.allSettled([
+    ...targetBrokers.map((broker) =>
+      resend.emails.send({
+        from: FROM_ADDRESS,
+        to: broker.email!,
+        replyTo,
+        subject,
+        text: emailBody,
+      }),
+    ),
+    resend.emails.send({
+      from: FROM_ADDRESS,
+      to: ADMIN_EMAIL,
+      replyTo,
+      subject: `[Copy] ${subject}`,
+      text: `${emailBody}\n\nSent to: ${
+        targetBrokers.length > 0
+          ? targetBrokers.map((b) => b.name).join(", ")
+          : "No broker emails on file for this category."
+      }`,
+    }),
+  ]);
+
+  const anySucceeded = sendResults.some((result) => result.status === "fulfilled");
+  if (!anySucceeded) {
+    console.error("All request emails failed to send", sendResults);
+    return NextResponse.json(
+      { error: "Could not send your request. Please try again." },
       { status: 500 },
     );
   }
